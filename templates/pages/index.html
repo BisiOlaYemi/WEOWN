@@ -10,7 +10,7 @@
 			<div class="home-search p-5">
 				<div class="overlay p-5">
 					<h1 class="display-4 mb-4">
-					Discover Your New Home
+					The future of investment in properties
 					</h1>
 					<p class="lead">It's so simple to find the best real estate deals in your area. It's one easy search!</p>
 					<div class="search">
@@ -27,9 +27,9 @@
 							<div class="form-row">
 								<!-- State -->
 								<div class="col-md-6 mb-3">
-									<label class="sr-only">State</label>
+									<label class="sr-only">State/Province</label>
 									<select name="state" class="form-control">
-										<option selected="true" disabled="disabled">State</option>
+										<option selected="true" disabled="disabled">State/Province</option>
 										{% for key,value in state_choices.items %}
 											<option value="{{ key }}"
 												{% if key == values.state %}
@@ -76,7 +76,7 @@
 									</select>
 								</div>
 							</div>
-							<button class="btn btn-secondary btn-block mt-4" type="submit">Submit form</button>
+							<button class="btn btn-secondary btn-block mt-4" type="submit">Check Availabity</button>
 						</form>
 					</div>
 				</div>
