@@ -28,3 +28,9 @@ def about(request):
     }
 
     return render(request, 'pages/about.html', context)
+
+def investor(request):
+    context = {
+        'investor': investor,
+    }
+    return render(request, 'pages/investor.html', context)

@@ -30,6 +30,7 @@ state_choices = {
         'NL': 'Newfoundland and Labrador',
         'NS': 'Nova Scotia',
         'NB': 'New Brunswick',
+        'NV': 'Nunavut',
         'MB': 'Manitoba',
         'ON': 'Ontario',
         'PE': 'Prince Edward Island',

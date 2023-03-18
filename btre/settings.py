@@ -57,6 +57,8 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+# 'django.middleware.locale.LocaleMiddleware',
+
 ROOT_URLCONF = 'btre.urls'
 
 TEMPLATES = [
@@ -113,6 +115,16 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
+
+# LANGUAGES = [
+#     ('en', _('English')),
+#     ('fr', _('French')),
+# ]
+
+# LOCAL_PATHS = (
+#     os.path.join(BASE_DIR, 'locale'),
+# )
+
 
 LANGUAGE_CODE = 'en-us'
 
