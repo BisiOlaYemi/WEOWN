@@ -10,7 +10,7 @@
 			<div class="home-search p-5">
 				<div class="overlay p-5">
 					<h1 class="display-4 mb-4">
-					Future of investment in property
+						Future of investment in property
 					</h1>
 					<p class="lead">It's so simple to find the best real estate deals in your area. It's one easy search!</p>
 					<div class="search">
@@ -20,8 +20,8 @@
 								<div class="col-md-12 mb-3">
 									<label class="sr-only">Keywords</label>
 									<input type="text" name="keywords" class="form-control"
-									placeholder="Keyword (Taller Ceilings, House with garden, etc)"
-									value="{{ values.keywords }}" required>
+										   placeholder="Keyword (Taller Ceilings, House with garden, etc)"
+										   value="{{ values.keywords }}" required>
 								</div>
 							</div>
 							<div class="form-row">
@@ -31,11 +31,11 @@
 									<select name="state" class="form-control">
 										<option selected="true" disabled="disabled">State/Province</option>
 										{% for key,value in state_choices.items %}
-											<option value="{{ key }}"
+										<option value="{{ key }}"
 												{% if key == values.state %}
-													selected
-												{% endif %}
-											>{{ value }}</option>
+												selected
+											{% endif %}
+										>{{ value }}</option>
 										{% endfor %}
 									</select>
 								</div>
@@ -44,11 +44,11 @@
 									<select name="bedrooms" class="form-control">
 										<option selected="true" disabled="disabled">Bedrooms</option>
 										{% for key,value in bedroom_choices.items %}
-											<option value="{{ key }}"
+										<option value="{{ key }}"
 												{% if key == values.bedrooms %}
-													selected
-												{% endif %}
-											>{{ value }}</option>
+												selected
+											{% endif %}
+										>{{ value }}</option>
 										{% endfor %}
 									</select>
 								</div>
@@ -58,7 +58,7 @@
 								<div class="col-md-12 mb-3">
 									<label class="sr-only">City</label>
 									<input type="text" name="city" class="form-control" placeholder="City"
-									value="{{ values.city }}">
+										   value="{{ values.city }}">
 								</div>
 							</div>
 							<!-- Price -->
@@ -67,22 +67,100 @@
 									<select name="price" class="form-control" id="type">
 										<option selected="true" disabled="disabled">Price</option>
 										{% for key,value in price_choices.items %}
-											<option value="{{ key }}"
+										<option value="{{ key }}"
 												{% if key == values.price %}
-													selected
-												{% endif %}
-											>{{ value }}</option>
+												selected
+											{% endif %}
+										>{{ value }}</option>
 										{% endfor %}
 									</select>
 								</div>
 							</div>
-							<button class="btn btn-secondary btn-block mt-4" type="submit">Search availability</button>
+							<button class="btn btn-secondary btn-block mt-4" onclick="searchAvailability()">Search availability</button>
 						</form>
 					</div>
 				</div>
 			</div>
 		</div>
 	</section>
+	
+	<script>
+		function searchAvailability() {
+			// check if user is logged in
+			if (!userLoggedIn()) {
+				// show popup to register
+				var popup = document.createElement("div");
+				popup.classList.add("popup");
+				var content = document.createElement("div");
+				content.classList.add("popup-content");
+				content.innerHTML = 
+				"<h3>Thank you for being here! <br> Free Account Required to get:</h3><p><ul><li>Instant access to photos & features</li> <li>Save searches & homes across devices</li></ul></><br><button class='popup-btn' onclick='closePopup()'>Close</button>";
+				popup.appendChild(content);
+				document.body.appendChild(popup);
+			} else {
+				// user is logged in, perform search
+				document.querySelector("form").submit();
+			}
+		}
+	
+		function userLoggedIn() {
+			// check if user is logged in
+			// return true or false
+		}
+	
+		function closePopup() {
+			var popup = document.querySelector(".popup");
+			document.body.removeChild(popup);
+		}
+	</script>
+	
+	<style>
+		.popup {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background-color: rgba(0, 0, 0, 0.7);
+			z-index: 9999;
+		}
+	
+		.popup-content {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			background-color: #fff;
+			padding: 20px;
+			border-radius: 5px;
+			box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+		}
+	
+		.popup h2 {
+			margin-top: 0;
+			margin-bottom: 20px;
+		}
+	
+		.popup-btn {
+			background-color: #333;
+			color: #fff;
+			border: none;
+			border-radius: 5px;
+			padding: 10px 20px;
+			font-size: 16px;
+			cursor: pointer;
+		}
+	
+		.popup-btn:hover {
+			background-color: #555;
+		}
+	</style>
+	
+	  
+	
 	<br>
 	<!-- Alerts -->
 	{% include 'partials/_alerts.html' %}
