@@ -48,35 +48,64 @@
 										<h4 class="text-primary">{{ listing.title }}</h4>
 										<p>
 											<i class="fas fa-map-marker text-secondary"></i>
-										{{ listing.city }} {{listing.state}}, {{listing.zipcode}}</p>
+											{{ listing.city }} {{listing.state}}, {{listing.zipcode}}
+										</p>
 									</div>
 									<hr>
 									<div class="row py-2 text-secondary">
 										<div class="col-6">
-										<i class="fas fa-bed"></i> Bedrooms: {{ listing.bedrooms }}</div>
+											<i class="fas fa-bed"></i> Bedrooms: {{ listing.bedrooms }}
+										</div>
 										<div class="col-6">
-										<i class="fas fa-bath"></i> Bathrooms: {{ listing.bathrooms }}</div>
+											<i class="fas fa-bath"></i> Bathrooms: {{ listing.bathrooms }}
+										</div>
 									</div>
 									<div class="row py-2 text-secondary">
 										<div class="col-6">
-										<i class="fas fa-th-large"></i> Sqft: {{listing.sqft}}</div>
+											<i class="fas fa-th-large"></i> Sqft: {{listing.sqft}}
+										</div>
 										<div class="col-6">
-										<i class="fas fa-car"></i> Garage: {{ listing.garage }}</div>
+											<i class="fas fa-car"></i> Garage: {{ listing.garage }}
+										</div>
 									</div>
 									<hr>
 									<div class="row py-2 text-secondary">
 										<div class="col-12">
-										<i class="fas fa-user"></i> {{ listing.realtor }}</div>
+											<i class="fas fa-user"></i> {{ listing.realtor }}
+										</div>
 									</div>
 									<div class="row text-secondary pb-2">
 										<div class="col-12">
-										<i class="fas fa-clock"></i> {{ listing.list_date | timesince }}</div>
+											<i class="fas fa-clock"></i> {{ listing.list_date | timesince }}
+										</div>
 									</div>
 									<hr>
-									<a href="{% url 'listing' listing.id %}" class="btn btn-primary btn-block"> Details </a>
+									<a href="#" class="btn btn-primary btn-block" data-toggle="modal" data-target="#register-modal">View Details</a>
 								</div>
 							</div>
 						</div>
+						
+						<!-- Modal -->
+						<div class="modal fade" id="register-modal" tabindex="-1" role="dialog" aria-labelledby="register-modal-label" aria-hidden="true">
+							<div class="modal-dialog" role="document">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h5 class="modal-title" id="register-modal-label">Welcome!</h5>
+										<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+											<span aria-hidden="true">&times;</span>
+										</button>
+									</div>
+									<div class="modal-body">
+										<p><ul><li>Instant access to photos & features</li><li>Save searches & homes across devices</li></ul></p>
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+										<a href="{% url 'register' %}" class="btn btn-primary">Register</a>
+									</div>
+								</div>
+							</div>
+						</div>
+						
 					{% endfor %}
 				{% else %}
 					<div class="col-md-12">
