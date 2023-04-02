@@ -211,29 +211,7 @@
 										<i class="fas fa-clock"></i> {{ listing.list_date | timesince }}</div>
 									</div>
 									<hr>
-									<a href="#" class="btn btn-primary btn-block" data-toggle="modal" data-target="#registerModal">Details</a>
-
-<div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="registerModalLabel">Welcome!<br> Create a free Account to get:</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p><ul><li>Instant access to photos & features</li> <li>Save searches & homes across devices</li></ul></p>
-        <!-- Add your registration form here -->
-      </div>
-	  <div class="modal-footer">
-		
-		<a href="{% url 'register' %}" class="btn btn-primary">Register</a>
-	</div>
-    </div>
-  </div>
-</div>
-
+									<a href="{% url 'listing' listing.id %}" class="btn btn-primary btn-block"> Details </a>
 								</div>
 							</div>
 						</div>
