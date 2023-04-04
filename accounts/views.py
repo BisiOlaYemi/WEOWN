@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from django.contrib import messages, auth
 from django.contrib.auth.models import User
 from contacts.models import Contact
+from django.urls import reverse_lazy
+from django.contrib.auth.views import PasswordResetView
 # Create your views here.
 
 
@@ -75,3 +77,8 @@ def dashboard(request):
         'contacts': user_contacts
     }
     return render(request, 'accounts/dashboard.html', context)
+
+
+class CustomPasswordResetView(PasswordResetView):
+    email_template_name = 'registration/password_reset_email.html'
+    template_name = 'registration/password_reset_form.html'
