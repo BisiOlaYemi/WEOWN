@@ -49,8 +49,10 @@
             background-color: rgba(1, 23, 48, 0.8);
             border-radius: 10px;
             z-index: 1;
-            width: 500px;
-            height: 500px;
+            width: 90%;
+            max-width: 500px;
+            margin: 0 auto;
+            height: auto;
         }
         .signup-form h2 {
             margin-bottom: 20px;
@@ -82,6 +84,21 @@
         }
         .signup-form input[type="submit"]:hover {
             background-color: #0069d9;
+        }
+
+        /* Media Queries for Mobile Devices */
+        @media only screen and (max-width: 767px) {
+            .signup-form {
+                padding: 20px;
+            }
+            .signup-form input[type="text"],
+            .signup-form input[type="email"],
+            .signup-form input[type="password"] {
+                font-size: 14px;
+            }
+            .signup-form input[type="submit"] {
+                font-size: 14px;
+            }
         }
     </style>  
 {% endblock content %}
