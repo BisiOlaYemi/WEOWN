@@ -17,8 +17,9 @@
             <input type="email" name="email" placeholder="Email Address">
             <input type="password" name="password" placeholder="Password">
             <input type="submit" value="Sign Up"><br>
-            <div style="text-align:left;">
-                <a href="#" class="text-white">Sign In</a>
+            <div style="display:flex; justify-content:space-between;">
+                <a href="#" class="text-white font-weight:bold;" style="flex-grow:1;">Sign In</a>
+                <a href="#" class="text-white font-weight:bold;" style="flex-shrink:1;">forgot password?</a>
             </div>
         </form>
     </div>           
@@ -76,7 +77,8 @@
         }
         .signup-form input[type="submit"] {
             display: block;
-            width: 100%;
+            width: 50%;
+            margin: 0 auto; /* add this line to center the button */
             padding: 10px;
             background-color: #007bff;
             color: #fff;
@@ -86,6 +88,7 @@
             font-family: Arial, sans-serif;
             cursor: pointer;
         }
+
         .signup-form input[type="submit"]:hover {
             background-color: #0069d9;
         }
