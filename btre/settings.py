@@ -85,12 +85,12 @@ WSGI_APPLICATION = 'btre.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'estatewe',
-        'USER': 'root',
-        'PASSWORD': 'delhi123',
-        'HOST': 'localhost',
-        'PORT': '3306',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'careerhaven_inc',
+        'USER': 'careerhaven_inc_user',
+        'PASSWORD': 'Mm5hUpbMfU84WrEThV3rjcjZks0hn28D',
+        'HOST': 'dpg-cgoltud269v5rjcat91g-a',
+        'PORT': '5432',
     }
 }
 
