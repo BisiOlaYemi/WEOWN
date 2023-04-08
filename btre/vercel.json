@@ -1,13 +1,14 @@
-{ 
-	"builds": [{
-		"src": "brte/wsgi.py",
-		"use": "@vercel/python",
-		"config": { "maxLamdaSize": "15mb", "runtime": "python3.9" }
-	}],
+{
+	"builds": [
+		{
+			"src": "brte/wsgi.py",
+			"use": "@vercel/python"
+		}
+	],
 	"routes": [
 		{
 			"src": "/(.*)",
-			"dest": "btre/wsgi.py"
+			"dest": "brte/wsgi.py"
 		}
 	]
 }
