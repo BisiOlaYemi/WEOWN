@@ -89,7 +89,7 @@ DATABASES = {
         'NAME': 'careerhaven_inc',
         'USER': 'careerhaven_inc_user',
         'PASSWORD': 'Mm5hUpbMfU84WrEThV3rjcjZks0hn28D',
-        'HOST': 'dpg-cgoltud269v5rjcat91g-a',
+        'HOST': 'localhost',
         'PORT': '5432',
     }
 }
