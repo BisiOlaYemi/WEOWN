@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-e+xv#*_p&17aq%tv(9a&td-t-71og$h1$n-(7)9k^gf9t5n!m0
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['.vercel.app']
 
 
 # Application definition
@@ -85,12 +85,12 @@ WSGI_APPLICATION = 'btre.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'careerhaven_inc',
-        'USER': 'careerhaven_inc_user',
-        'PASSWORD': 'Mm5hUpbMfU84WrEThV3rjcjZks0hn28D',
-        'HOST': 'postgres://careerhaven_inc_user:Mm5hUpbMfU84WrEThV3rjcjZks0hn28D@dpg-cgoltud269v5rjcat91g-a.oregon-postgres.render.com/careerhaven_inc',
-        'PORT': '5432',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'estatewe',
+        'USER': 'root',
+        'PASSWORD': 'delhi123',
+        'HOST': 'localhost',
+        'PORT': '3306',
     }
 }
 
