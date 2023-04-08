@@ -89,7 +89,7 @@ DATABASES = {
         'NAME': 'careerhaven_inc',
         'USER': 'careerhaven_inc_user',
         'PASSWORD': 'Mm5hUpbMfU84WrEThV3rjcjZks0hn28D',
-        'HOST': 'localhost',
+        'HOST': 'postgres://careerhaven_inc_user:Mm5hUpbMfU84WrEThV3rjcjZks0hn28D@dpg-cgoltud269v5rjcat91g-a.oregon-postgres.render.com/careerhaven_inc',
         'PORT': '5432',
     }
 }
