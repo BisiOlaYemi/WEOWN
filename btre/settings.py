@@ -86,10 +86,10 @@ WSGI_APPLICATION = 'btre.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'estatewe',
-        'USER': 'root',
+        'NAME': 'weowndb23',
+        'USER': 'wecarh',
         'PASSWORD': 'delhi123',
-        'HOST': 'localhost',
+        'HOST': 'career23',
         'PORT': '3306',
     }
 }
