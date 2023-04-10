@@ -27,6 +27,7 @@ DEBUG = False
 
 ALLOWED_HOSTS = ['162.254.32.79', 'weown.estate']
 
+CSRF_TRUSTED_ORIGINS = ['162.254.32.79','weown.estate']
 
 # Application definition
 
