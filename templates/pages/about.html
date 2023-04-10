@@ -37,20 +37,19 @@
         <div class="container">
           <div class="row">
             <div class="col-md-8">
-              <h2>We Search For The Perfect Home</h2>
-              <p class="lead">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt, pariatur!</p>
+              <h2>We offer value for your home investment</h2>
+              <p class="lead">Ultimately, our presence in the local market gives us a significant advantage over our competitors, allowing us to provide our clients with the best possible services, resources, and assistance. We are confident that we can help our clients achieve their goals and deliver exceptional results.                 Choose WeOwn Real Estate as your trusted partner for all your real estate needs. Contact us today to learn more about our services and how we can help you succeed. </p>
               <img src="{% static 'img/about.jpg' %}" alt="">
-              <p class="mt-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis esse officia repudiandae ad saepe ex, amet
-                neque quod accusamus rem quia magnam magni dolorum facilis ullam minima perferendis? Exercitationem at quaerat
-                commodi id libero eveniet harum perferendis laborum molestias quia.</p>
+              <p class="mt-4">as the leading real estate company in Canada that provides exceptional services to our clients. Our mission is to service people, and we have built a reputation for delivering outstanding results. 
+                As a real estate company, we have a unique advantage over our competitors - our deep understanding of the local market. Our established presence in the area, coupled with our extensive relationships with current and potential clients, has allowed us to provide our clients with unmatched value. </p>
             </div>
             <div class="col-md-4">
               {% if mvp_realtors %}
                 {% for realtor in mvp_realtors %}
                     <div class="card">
-                      <img class="card-img-top" src="{{ realtor.photo.url }}" alt="Seller of the month">
+                      <img class="card-img-top" src="{{ realtor.photo.url }}" alt="Property Agent">
                       <div class="card-body">
-                        <h5 class="card-title">Seller Of The Month</h5>
+                        <h5 class="card-title">Official Property Realtor</h5>
                         <h6 class="text-secondary">{{ realtor.name }}</h6>
                         <p class="card-text">{{ realtor.description }}</p>
                       </div>
@@ -65,7 +64,7 @@
       <!-- Work -->
       <section id="work" class="bg-dark text-white text-center">
         <h2 class="display-4">We Work For You</h2>
-        <h4>Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem velit aperiam, unde aliquid at similique!</h4>
+        <h5>At WeOwn Real Estate, our focus is entirely on serving you. Our team of professionals is dedicated to working tirelessly to help you achieve your real estate goals. Whether you are buying, selling, or leasing, we are here to provide you with the expertise and support you need to make informed decisions.</h5>
         <hr>
         <a href="{% url 'listings' %}" class="btn btn-secondary text-white btn-lg">View Our Featured Listings</a>
       </section>
@@ -92,7 +91,7 @@
                 {% endfor %}
             {% else %}
               <div class="col-md-12">
-                  <p>No Realtors Available</p>
+                  <p>New Property updates coming soon!</p>
               </div>
             {% endif %}
           </div>
