@@ -27,6 +27,10 @@ DEBUG = True
 
 CSRF_TRUSTED_ORIGINS = ['162.254.32.79', 'weown.estate']
 
+# HTTPS Settings
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = False
+SECURE_SSL_REDIRECT = False
 
 # Application definition
 
