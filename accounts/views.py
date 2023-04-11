@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from contacts.models import Contact
 from django.urls import reverse_lazy
 from django.contrib.auth.views import PasswordResetView
+from django.views.decorators.csrf import csrf_exempt
 # Create your views here.
 
 
@@ -45,7 +46,8 @@ def register(request):
             return redirect('register')
     else:
         return render(request, 'accounts/register.html')
-
+    
+@csrf_exempt
 def login(request):
     if request.method == 'POST':
         username = request.POST['username']
@@ -62,7 +64,7 @@ def login(request):
     else:
         return render(request, 'accounts/login.html')
 
-
+@csrf_exempt
 def logout(request):
     if request.method == 'POST':
         auth.logout(request)
