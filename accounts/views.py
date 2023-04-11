@@ -7,7 +7,7 @@ from django.contrib.auth.views import PasswordResetView
 from django.views.decorators.csrf import csrf_exempt
 # Create your views here.
 
-
+@csrf_exempt
 def register(request):
     if request.method == 'POST':
         # Get form values
