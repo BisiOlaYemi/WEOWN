@@ -36,7 +36,6 @@ INSTALLED_APPS = [
     'realtors.apps.RealtorsConfig',
     'accounts.apps.AccountsConfig',
     'contacts.apps.ContactsConfig',
-    'jazzmin.apps.JazzminConfig',
 
     'django.contrib.admin',
     'django.contrib.auth',
