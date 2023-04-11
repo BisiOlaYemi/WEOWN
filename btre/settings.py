@@ -31,13 +31,11 @@ ALLOWED_HOSTS = ['162.254.32.79', 'weown.estate']
 # Application definition
 
 INSTALLED_APPS = [
-    'jazzmin',
     'pages.apps.PagesConfig',
     'listings.apps.ListingsConfig',
     'realtors.apps.RealtorsConfig',
     'accounts.apps.AccountsConfig',
     'contacts.apps.ContactsConfig',
-    
 
     'django.contrib.admin',
     'django.contrib.auth',
