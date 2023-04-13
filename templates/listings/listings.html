@@ -51,33 +51,93 @@
 										<h4 class="text-primary">{{ listing.title }}</h4>
 										<p>
 											<i class="fas fa-map-marker text-secondary"></i>
-										{{ listing.city }} {{listing.state}}, {{listing.zipcode}}</p>
+											{{listing.city}} {{listing.state}}, {{listing.zipcode}}
+										</p>
 									</div>
 									<hr>
 									<div class="row py-2 text-secondary">
 										<div class="col-6">
-										<i class="fas fa-bed"></i> Bedrooms: {{ listing.bedrooms }}</div>
+											<i class="fas fa-th-large"></i> Sqft: {{listing.sqft}}
+										</div>
 										<div class="col-6">
-										<i class="fas fa-bath"></i> Bathrooms: {{ listing.bathrooms }}</div>
+											<i class="fas fa-car"></i> Garage: {{listing.garage}}
+										</div>
 									</div>
 									<div class="row py-2 text-secondary">
 										<div class="col-6">
-										<i class="fas fa-th-large"></i> Sqft: {{listing.sqft}}</div>
+											<i class="fas fa-bed"></i> Bedrooms: {{listing.bedrooms}}
+										</div>
 										<div class="col-6">
-										<i class="fas fa-car"></i> Garage: {{ listing.garage }}</div>
+											<i class="fas fa-bath"></i> Bathrooms: {{listing.bathrooms}}
+										</div>
 									</div>
 									<hr>
 									<div class="row py-2 text-secondary">
-										<div class="col-12">
-										<i class="fas fa-user"></i> {{ listing.realtor }}</div>
+										<div class="col-6">
+											<i class="fas fa-user"></i> {{ listing.realtor }}
+										</div>
 									</div>
 									<div class="row text-secondary pb-2">
 										<div class="col-12">
-										<i class="fas fa-clock"></i> {{ listing.list_date | timesince }}</div>
+											<i class="fas fa-clock"></i> {{ listing.list_date | timesince }}
+										</div>
 									</div>
 									<hr>
-									<a href="{% url 'listing' listing.id %}" class="btn btn-primary btn-block"> Details </a>
+									{% if not user.is_authenticated %}
+										<a href="#" class="btn btn-primary btn-block" onclick="openModal()">Details</a>
+									{% else %}
+										<a href="{% url 'listing' listing.id %}" class="btn btn-primary btn-block">Details</a>
+									{% endif %}
 								</div>
+								
+								<!-- Modal -->
+								<div id="myModal" class="modal">
+									<!-- Modal content -->
+									<div class="modal-content" style="height: 400px; width: 300px; position: fixed; top: 50%; left: 50%; background-color: darkslateblue; transform: translate(-50%, -50%);">
+										<div class="modal-header">
+											<h2 class="text-white">Welcome! </h2>
+											<span class="close" onclick="closeModal()">&times;</span>
+										</div>
+										<div class="modal-body">
+											<h5 class="text-white">Register to view details of property.</h5>
+											<ul class="text-white">
+												<li>80% more houses are available, including sold data</li>
+												<li>Get Quick access to pictures and features </li>
+												<li>Save homes & searches across devices  </li>
+											</ul>
+										</div>
+										<div class="modal-footer">
+											<a href="{% url 'register' %}" class="btn btn-primary">Register</a>
+										</div>
+									</div>
+								</div>
+								<style>
+									.modal-header {
+										display: flex;
+										justify-content: space-between;
+										align-items: center;
+									}
+									
+									.close {
+										position: absolute;
+										top: 10px;
+										right: 10px;
+										font-size: 28px;
+										font-weight: bold;
+										color: #000;
+									}
+									</style>
+									
+									
+								<script>
+									function openModal() {
+										document.getElementById("myModal").style.display = "block";
+									}
+								
+									function closeModal() {
+										document.getElementById("myModal").style.display = "none";
+									}
+								</script>
 							</div>
 						</div>
 						
