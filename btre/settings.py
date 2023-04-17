@@ -23,10 +23,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-e+xv#*_p&17aq%tv(9a&td-t-71og$h1$n-(7)9k^gf9t5n!m0'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
-# CSRF_TRUSTED_ORIGINS = ['http://*.162.254.32.79', 'https://*.weown.estate']
+ALLOWED_HOSTS = ['162.254.32.79', 'weown.estate']
+CSRF_TRUSTED_ORIGINS = ['http://*.162.254.32.79', 'https://*.weown.estate']
 
 
 # Application definition
@@ -90,9 +90,9 @@ WSGI_APPLICATION = 'btre.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'estatewe',
-        'USER': 'root',
-        'PASSWORD': 'delhi123',
+        'NAME': 'weowndb23',
+        'USER': 'wecarh',
+        'PASSWORD': 'career23',
         'HOST': 'localhost',
         'PORT': '3306',
     }
@@ -144,9 +144,9 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'btre/static')
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'btre/static')]
+# STATICFILES_DIRS = [os.path.join(BASE_DIR, 'btre/static')]
 
 
 
@@ -156,7 +156,7 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'btre/static')]
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Media Folder Setting
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'btre/media')
 MEDIA_URL = '/media/'
 
 # Message
