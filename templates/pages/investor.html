@@ -12,7 +12,8 @@
     </div>
     <div class="signup-form container">
         <h2>Register as an Investor</h2>
-        <form>
+        <form method="post" action="{% url 'investor:signup' %}">
+          {% csrf_token %}
             <input type="text" name="name" placeholder="Full Name">
             <input type="email" name="email" placeholder="Email Address">
             <input type="password" name="password" placeholder="Password">
@@ -25,7 +26,8 @@
     </div>
     <div class="signin-form container" style="display:none;">
         <h2>Sign In</h2>
-        <form>
+        <form method="post" action="{% url 'investor:signin' %}">
+          {% csrf_token %}
             <input type="email" name="email" placeholder="Email Address">
             <input type="password" name="password" placeholder="Password">
             <input type="submit" value="Sign In"><br>

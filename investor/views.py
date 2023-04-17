@@ -1,57 +1,51 @@
 from django.shortcuts import render, redirect
+from django.http import HttpResponseRedirect
 from django.core.mail import send_mail
-from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, login
+from django.apps import apps
+from investor.models import Investor
 from django.contrib import messages
-from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth import authenticate, login
 
 def signup(request):
+    Investor = apps.get_model('investor', 'Investor')
+    
     if request.method == 'POST':
-        # Extract form data
-        name = request.POST.get('name')
-        email = request.POST.get('email')
-        password = request.POST.get('password')
+        name = request.POST['name']
+        email = request.POST['email']
+        password = request.POST['password']
+        investor = Investor(name=name, email=email, password=password)
+        investor.save()
 
-        # Send registration email
-        subject = 'Complete your registration'
-        message = 'Click the following link to complete your registration: https://investors.weown.estate/complete-registration'
-        from_email = 'contact@weown.estate'
+        # send email notification
+        subject = 'Welcome to Our Investment Platform'
+        message = f'Dear {name},\n\nThank you for registering as an investor on our platform.'
+        from_email = 'marketing@weown.estate'
         recipient_list = [email]
-        send_mail(subject, message, from_email, recipient_list)
+        send_mail(subject, message, from_email, recipient_list, fail_silently=False)
 
-        # Save user data to database
-        # ...
-
-        # Redirect to success page
-        return redirect('success')
-
+        return HttpResponseRedirect('/success/')
     return render(request, 'signup.html')
 
+def success(request):
+    return render(request, 'success.html')
+
 def signin(request):
-    try:
-        if request.user.is_authenticated:
-            return redirect('/board/')
-        # message.info(request, 'Account not found')
-        if request.method == 'POST':
-            username= request.POST.get('username')
-            password = request.POST.get('password')
-            user_obj= User.objects.filter(username = username)
-            if not user_obj.exists ():
-                messages.info(request, 'Account not found')
-                return redirect(request.META.get('HTTP_REFERER'))
-            
-            user_obj = authenticate(username = username, password = password)
+    Investor = apps.get_model('investor', 'Investor')
+    
+    if request.method == 'POST':
+        email = request.POST['email']
+        password = request.POST['password']
 
-            if user_obj and user_obj.is_superuser:
-                login(request, user_obj)
-                return redirect('/board/')
-            
-            messages.info(request, 'Invalid password')
-            return redirect('/')
-        return render(request, 'admin.html')
-    except Exception as e:
-       print(e)
+        try:
+            investor = Investor.objects.get(email=email)
 
-def board(request):
-    return render(request, 'board.html')
+            if investor.password == password:
+                return render(request, 'investboard.html')
 
+            else:
+                messages.error(request, 'Incorrect password')
+
+        except Investor.DoesNotExist:
+            messages.error(request, 'Email not recognised')
+
+    return render(request, 'investor.html')

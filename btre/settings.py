@@ -23,10 +23,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-e+xv#*_p&17aq%tv(9a&td-t-71og$h1$n-(7)9k^gf9t5n!m0'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['162.254.32.79', 'weown.estate']
-CSRF_TRUSTED_ORIGINS = ['http://*.162.254.32.79', 'https://*.weown.estate']
+ALLOWED_HOSTS = []
+# CSRF_TRUSTED_ORIGINS = ['http://*.162.254.32.79', 'https://*.weown.estate']
 
 
 # Application definition
@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'realtors.apps.RealtorsConfig',
     'accounts.apps.AccountsConfig',
     'contacts.apps.ContactsConfig',
+    'investor.apps.InvestorConfig',
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -89,9 +90,9 @@ WSGI_APPLICATION = 'btre.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'weowndb23',
-        'USER': 'wecarh',
-        'PASSWORD': 'career23',
+        'NAME': 'estatewe',
+        'USER': 'root',
+        'PASSWORD': 'delhi123',
         'HOST': 'localhost',
         'PORT': '3306',
     }
@@ -143,9 +144,9 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
-STATIC_ROOT = os.path.join(BASE_DIR, 'btre/static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
-# STATICFILES_DIRS = [os.path.join(BASE_DIR, 'btre/static')]
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'btre/static')]
 
 
 
@@ -155,7 +156,7 @@ STATIC_URL = '/static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Media Folder Setting
-MEDIA_ROOT = os.path.join(BASE_DIR, 'btre/media')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
 # Message
@@ -167,8 +168,8 @@ MESSAGE_TAGS = {
 # Email config
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER='***********' # put your email address
-EMAIL_HOST_PASSWORD='************' # put your email address password
+EMAIL_HOST_USER='frankolayemi@gmail.com' # put your email address
+EMAIL_HOST_PASSWORD='adeniyi123' # put your email address password
 EMAIL_USE_TLS=True
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
