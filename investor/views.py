@@ -43,9 +43,9 @@ def signin(request):
                 return render(request, 'investboard.html')
 
             else:
-                messages.error(request, 'Incorrect password')
+                messages.error(request, 'Email or password is incorrect.')
 
         except Investor.DoesNotExist:
-            messages.error(request, 'Email not recognised')
+            messages.error(request, 'Email or password is incorrect.')
 
     return render(request, 'investor.html')

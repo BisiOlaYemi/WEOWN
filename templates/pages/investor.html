@@ -28,6 +28,13 @@
         <h2>Sign In</h2>
         <form method="post" action="{% url 'investor:signin' %}">
           {% csrf_token %}
+          {% if messages %}
+            <div class="alert alert-danger">
+              {% for message in messages %}
+                {{ message }}
+              {% endfor %}
+            </div>
+          {% endif %}
             <input type="email" name="email" placeholder="Email Address">
             <input type="password" name="password" placeholder="Password">
             <input type="submit" value="Sign In"><br>
