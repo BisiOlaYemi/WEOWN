@@ -7,6 +7,7 @@
 	<link rel="stylesheet" href="{% static 'css/all.css' %}">
    <!-- Favicon icon -->
    <link rel="shortcut icon" href="{% static 'img/icon/weown.ico' %}" type="image/x-icon" >
+   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 
@@ -15,9 +16,9 @@
 		<ul>
 			<li onclick="openSection('home')"><i class="fas fa-home"></i> Home</li>
 			<li onclick="openSection('approved')"><i class="fas fa-check-circle"></i> Get Approved</li>
-			<li onclick="openSection('invest')"><i class="fas fa-chart-line"></i> Invest</li>
-			<li onclick="openSection('Owned')"><i class="fas fa-chart-pie"></i> Pecentage Owned</li>
-      <li onclick="openSection('settings')"><i class="fas fa-cog"></i> Settings</li>
+			<li onclick="openSection('notification')"><i class="fas fa-bell"></i> Notification</li>
+			<li onclick="openSection('owned')"><i class="fas fa-chart-pie"></i> Pecentage Owned</li>
+      		<li onclick="openSection('settings')"><i class="fas fa-cog"></i> Settings</li>
 			<li onclick="openSection('logout')"><i class="fas fa-sign-out-alt"></i><a href="/"> Logout</a></li>
 		</ul>
 	</div>
@@ -30,8 +31,8 @@
 			loop="">Investment Amount must be remitted within 2
 				banking days after investment interest is approved
 			</marquee>
-			<h1>Home</h1>
-			<p>Welcome to the dashboard!</p>
+			<h1>Hi,</h1>
+			<p>Welcome to your dashboard!</p>
 		</section>
 		<section id="approved">
 			<div class="form-container">
@@ -81,7 +82,7 @@
 			}
 
 			button[type="submit"] {
-				background-color: #007bff;
+				background-color: darkslateblue;
 				color: white;
 				padding: 10px 20px;
 				border-radius: 5px;
@@ -91,19 +92,137 @@
 			}
 
 			button[type="submit"]:hover {
-				background-color: darkslateblue;
+				background-color: rgb(36, 34, 51);
 			}
 
 			</style>
 		  </section>		  
-		<section id="invest">
-			<h1>Invest</h1>
-			<p>Invest in stocks, bonds and more</p>
+		<section id="notification">
+			<h1>Stay ahead</h1>
+			<p>All notification and updates will appear here for investors...</p>
 		</section>
-		<section id="Owned">
+		<section id="owned">
 			<h1>Percentage Owned</h1>
-			<p>Update your profile and preferences</p>
-		</section>
+			<p>Potential investment gain and/or rate can be summed up in this section</p>
+			<div class="calculator">
+				<h1>Investment Calculator</h1>
+				<form>
+					<label>Investment Value:</label>
+					<input type="text" placeholder="Enter your total investment amount" id="investmentValue">
+					<br>
+					<label>Interest Rate (%):</label>
+					<input type="text" placeholder="e:g(1%)" id="interestRate">
+					<br>
+					<label>Investment Term(years):</label>
+					<input type="text" id="loanTerm">
+					<br>
+					<button type="button" onclick="calculate()">Calculate</button>
+					<br><br>
+					<label>Stakes:</label>
+					<input type="text" id="monthlyPayment" disabled>
+					<br>
+					<label>Total Payment:</label>
+					<input type="text" id="totalPayment" disabled>
+					<br>
+					<label>Total Interest:</label>
+					<input type="text" id="totalInterest" disabled>
+					<br>
+					<div class="pieChart">
+						<button type="button" onclick="pieChart()">Show Pie Chart</button>
+						<br>
+						<canvas id="pieChart"></canvas>
+					</div>
+				</form>
+			</div>
+			<style>
+			.calculator {
+				margin: 0 auto;
+				width: 500px;
+				padding: 20px;
+				border: 1px solid #ccc;
+				box-shadow: 0 0 10px #ccc;
+				font-family: Arial, sans-serif;
+			  }
+			  
+			  .pieChart {
+				width: 40%;
+			  }
+			
+			  label {
+				display: inline-block;
+				width: 150px;
+			  }
+			  
+			  input {
+				width: 200px;
+				padding: 5px;
+				margin-bottom: 10px;
+			  }
+			  
+			  button {
+				margin-top: 10px;
+				padding: 10px;
+				background-color: darkslateblue;
+				color: white;
+				border: none;
+				cursor: pointer;
+				font-size: 16px;
+			  }
+			  
+			  canvas {
+				margin-top: 20px;
+				display: none;
+			  }
+			  </style>
+			  <script>
+			  function calculate() {
+				const investmentValue = document.getElementById("investmentValue").value;
+				const interestRate = document.getElementById("interestRate").value / 100 / 12;
+				const loanTerm = document.getElementById("loanTerm").value * 12;
+			  
+				const monthlyPayment = (investmentValue * interestRate * Math.pow(1 + interestRate, loanTerm)) / (Math.pow(1 + interestRate, loanTerm) - 1);
+				const totalPayment = monthlyPayment * loanTerm;
+				const totalInterest = totalPayment - investmentValue;
+			  
+				document.getElementById("monthlyPayment").value = monthlyPayment.toFixed(2);
+				document.getElementById("totalPayment").value = totalPayment.toFixed(2);
+				document.getElementById("totalInterest").value = totalInterest.toFixed(2);
+			  }
+			  
+			  function pieChart() {
+				const ctx = document.getElementById("pieChart").getContext("2d");
+			  
+				const investmentValue = parseFloat(document.getElementById("investmentValue").value);
+				const totalInterest = parseFloat(document.getElementById("totalInterest").value);
+			  
+				const data = {
+				  labels: ["Investment Amount", "Total Interest"],
+				  datasets: [
+					{
+					  label: "Investment Breakdown",
+					  data: [investmentValue, totalInterest],
+					  backgroundColor: ["#3e95cd", "#8e5ea2"]
+					}
+				  ]
+				};
+			  
+				const options = {
+				  title: {
+					display: true,
+					text: "Mortgage Breakdown"
+				  }
+				};
+			  
+				const chart = new Chart(ctx, {
+				  type: "pie",
+				  data: data,
+				  options: options
+				});
+			  
+				document.getElementById("pieChart").style.display = "block";
+			  }
+			  </script>
+		  </section>		  
 		<section id="settings">
 			<h1>Settings</h1>
 			<p>Update your profile and preferences</p>
@@ -114,7 +233,7 @@
       margin: 0;
       padding: 0;
       font-family: Arial, sans-serif;
-	  background-color: khaki;
+	  background-color: powderblue;
 }
 
 .sidebar {

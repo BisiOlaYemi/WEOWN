@@ -7,7 +7,7 @@ from django.contrib.auth.views import PasswordResetView
 from django.views.decorators.csrf import csrf_exempt
 # Create your views here.
 
-@csrf_exempt
+
 def register(request):
     if request.method == 'POST':
         # Get form values
@@ -38,7 +38,7 @@ def register(request):
                     # messages.success(request, 'You are now logged in')
                     # return redirect('index')
                     user.save()
-                    messages.success(request, 'You are now registered and cal log in')
+                    messages.success(request, 'You are now registered, please log in')
                     return redirect('login')
 
         else:
@@ -47,7 +47,7 @@ def register(request):
     else:
         return render(request, 'accounts/register.html')
     
-@csrf_exempt
+
 def login(request):
     if request.method == 'POST':
         username = request.POST['username']
@@ -56,7 +56,7 @@ def login(request):
 
         if user is not None:
             auth.login(request, user)
-            messages.success(request, 'You are now logged in')
+            messages.success(request, 'You are logged in')
             return redirect('dashboard')
         else:
             messages.error(request, 'Invalid credentials')
@@ -64,7 +64,7 @@ def login(request):
     else:
         return render(request, 'accounts/login.html')
 
-@csrf_exempt
+
 def logout(request):
     if request.method == 'POST':
         auth.logout(request)
