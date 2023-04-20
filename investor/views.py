@@ -3,9 +3,14 @@ from django.http import HttpResponseRedirect
 from django.core.mail import send_mail, EmailMessage
 from django.apps import apps
 from investor.models import Investor
-from django.contrib import messages
+from django.contrib import messages, auth
 from django.contrib.auth import authenticate, login
 from django.conf import settings
+from django.contrib.auth.backends import BaseBackend
+from django.contrib.auth.models import User
+from django.urls import reverse
+from django.http import HttpResponseBadRequest
+
 
 def signup(request):
     Investor = apps.get_model('investor', 'Investor')
@@ -30,26 +35,80 @@ def signup(request):
 def success(request):
     return render(request, 'success.html')
 
+# accounts/views.py
+
+
+
+
+class UserOrInvestorBackend(BaseBackend):
+    def authenticate(self, request, username=None, password=None, **kwargs):
+        # First, try to authenticate the user
+        try:
+            user = User.objects.get(username=username)
+        except User.DoesNotExist:
+            user = None
+
+        # If the user authentication fails, try the investor authentication
+        if user is None:
+            try:
+                investor = Investor.objects.get(email=username)
+                if investor.password == password:
+                    user = investor.to_user()
+            except Investor.DoesNotExist:
+                investor = None
+
+        # Return the authenticated user or investor
+        return user or investor
+
+def login(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(request, username=username, password=password)
+
+        if user is not None:
+            auth.login(request, user)
+            messages.success(request, 'You are logged in')
+            return redirect('investboard')
+        else:
+            messages.error(request, 'Invalid credentials')
+            return redirect('login')
+    else:
+        return render(request, 'investboard.html')
+
+
+# # investor/models.py
+#     def to_user(self):
+#         # Convert the Investor model to a User model
+#         try:
+#             user = User.objects.get(username=self.email)
+#         except User.DoesNotExist:
+#             user = User.objects.create_user(username=self.email, password=self.password)
+#         return user
+# investor/views.py
+
 def signin(request):
-    Investor = apps.get_model('investor', 'Investor')
-    
     if request.method == 'POST':
         email = request.POST['email']
         password = request.POST['password']
+        investor = Investor.objects.filter(email=email, password=password).first()
 
-        try:
-            investor = Investor.objects.get(email=email)
-
-            if investor.password == password:
-                return render(request, 'investboard.html')
-
-            else:
-                messages.error(request, 'Email or password is incorrect.')
-
-        except Investor.DoesNotExist:
+        if investor is not None:
+            user = investor.to_user()
+            auth.login(request, user)
+            messages.success(request, 'You are logged in')
+            try:
+                url = reverse('investboard')
+            except Exception as e:
+                return HttpResponseBadRequest(f"Error finding url for 'investboard': {e}")
+            return redirect(url)
+        else:
             messages.error(request, 'Email or password is incorrect.')
+    
+    return render(request, 'investboard.html')
 
-    return render(request, 'investor.html')
+def investboard(request):
+    return render(request, 'investboard.html')
 
 
 def get_approved(request):

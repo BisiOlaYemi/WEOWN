@@ -18,8 +18,9 @@
 			<li onclick="openSection('approved')"><i class="fas fa-check-circle"></i> Get Approved</li>
 			<li onclick="openSection('notification')"><i class="fas fa-bell"></i> Notification</li>
 			<li onclick="openSection('owned')"><i class="fas fa-chart-pie"></i> Pecentage Owned</li>
-      		<li onclick="openSection('settings')"><i class="fas fa-cog"></i> Settings</li>
-			<li onclick="openSection('logout')"><i class="fas fa-sign-out-alt"></i><a href="/"> Logout</a></li>
+      		<li><i class="fas fa-eye"></i><a href="{% url 'listings' %}" target="_blank" style="text-decoration:none;"> View listings</a></li>
+			<li onclick="openSection('settings')"><i class="fas fa-cog"></i> Settings</li>
+			<li onclick="openSection('logout')"><i class="fas fa-sign-out-alt"></i><a href="{% url 'index' %}" style="text-decoration:none;">Sign Out</a></li>
 		</ul>
 	</div>
 
