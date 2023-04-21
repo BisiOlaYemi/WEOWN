@@ -20,7 +20,12 @@
 			<li onclick="openSection('owned')"><i class="fas fa-chart-pie"></i> Pecentage Owned</li>
       		<li><i class="fas fa-eye"></i><a href="{% url 'listings' %}" target="_blank" style="text-decoration:none;"> View listings</a></li>
 			<li onclick="openSection('settings')"><i class="fas fa-cog"></i> Settings</li>
-			<li onclick="openSection('logout')"><i class="fas fa-sign-out-alt"></i><a href="{% url 'index' %}" style="text-decoration:none;">Sign Out</a></li>
+			<li onclick="openSection('signout')"><i class="fas fa-sign-out-alt"></i><a href="javascript:{document.getElementById('logout').submit()}" class="nav-link" style="text-decoration: none;">
+				Sign Out
+			</a><form action="{% url 'logout' %}" method="POST" id="logout">
+				{% csrf_token %}
+				<input type="hidden" name="">
+			</form></li>
 		</ul>
 	</div>
 

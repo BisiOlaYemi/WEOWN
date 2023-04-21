@@ -10,6 +10,7 @@ from django.contrib.auth.backends import BaseBackend
 from django.contrib.auth.models import User
 from django.urls import reverse
 from django.http import HttpResponseBadRequest
+from django.contrib.auth import logout as auth_logout
 
 
 def signup(request):
@@ -36,10 +37,6 @@ def success(request):
     return render(request, 'success.html')
 
 # accounts/views.py
-
-
-
-
 class UserOrInvestorBackend(BaseBackend):
     def authenticate(self, request, username=None, password=None, **kwargs):
         # First, try to authenticate the user
@@ -76,7 +73,6 @@ def login(request):
     else:
         return render(request, 'investboard.html')
 
-
 # # investor/models.py
 #     def to_user(self):
 #         # Convert the Investor model to a User model
@@ -110,6 +106,11 @@ def signin(request):
 def investboard(request):
     return render(request, 'investboard.html')
 
+def logout(request):
+    auth_logout(request)
+    auth_logout(request)
+    messages.success(request, 'You are logged out')
+    return redirect('index')
 
 def get_approved(request):
     success_message = ''
