@@ -59,18 +59,20 @@
               </p>
             </div>
             <div class="col-md-4">
-              {% if mvp_realtors %}
-                {% for realtor in mvp_realtors %}
+              
                     <div class="card">
-                      <img class="card-img-top" src="{{ realtor.photo.url }}" alt="Property Agent">
+                      <img class="card-img-top" src="/static/img/Femi.jpg" alt="Property Agent">
                       <div class="card-body">
-                        <h5 class="card-title">Official Property Realtor</h5>
-                        <h6 class="text-secondary">{{ realtor.name }}</h6>
-                        <p class="card-text">{{ realtor.description }}</p>
+                        <h5 class="card-title" style="color: blueviolet;">Femi Folorunsho</h5>
+                        <p>is the official property Realtor of Weown real estate investment,
+                          he is a Certified Realtor in Canada,
+                          with more than two years of expertise in the
+                          Canadian real estate industry.
+                        </p>
+                        
                       </div>
                     </div>
-                {% endfor %}
-              {% endif %}
+                
             </div>
           </div>
         </div>
